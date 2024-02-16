@@ -55,4 +55,8 @@ public interface Service {
     void delCustomerByCustomerId(long customerId);
 
     List<PaymentDto> findPaymentByCust_Id(long customerId);
+
+    CustomerDto registerAdmin(CustomerDto customerDto);
+
+    CustomerDto registerAgent(CustomerDto customerDto);
 }

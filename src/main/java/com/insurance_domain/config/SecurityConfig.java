@@ -25,7 +25,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public String[] URLS={
-            "/insurance/api/authenticate","/insurance/api/register","/v3/api-docs","/v2/api-docs",
+            "/insurance/api/register/admin","/insurance/api/register/agent",
+            "/insurance/api/authenticate","/insurance/api/register/user",
+            "/v3/api-docs","/v2/api-docs",
             "/swagger-resources/**","/swagger-ui/**","/webjars/**"
     };
 

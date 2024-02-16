@@ -51,9 +51,21 @@ public class AuthController {
 
 
     }
-    @PostMapping("/api/register")
+    @PostMapping("/api/register/user")
     public ResponseEntity<CustomerDto> registerUser(@RequestBody CustomerDto customerDto){
         CustomerDto customerDto1 = serviceImpl.registerNewUser(customerDto);
+        ResponseEntity<CustomerDto> customerDtoResponseEntity = new ResponseEntity<>(customerDto1, HttpStatus.CREATED);
+        return customerDtoResponseEntity;
+    }
+    @PostMapping("/api/register/admin")
+    public ResponseEntity<CustomerDto> registerAdmin(@RequestBody CustomerDto customerDto){
+        CustomerDto customerDto1 = serviceImpl.registerAdmin(customerDto);
+        ResponseEntity<CustomerDto> customerDtoResponseEntity = new ResponseEntity<>(customerDto1, HttpStatus.CREATED);
+        return customerDtoResponseEntity;
+    }
+    @PostMapping("/api/register/agent")
+    public ResponseEntity<CustomerDto> registerAgent(@RequestBody CustomerDto customerDto){
+        CustomerDto customerDto1 = serviceImpl.registerAgent(customerDto);
         ResponseEntity<CustomerDto> customerDtoResponseEntity = new ResponseEntity<>(customerDto1, HttpStatus.CREATED);
         return customerDtoResponseEntity;
     }

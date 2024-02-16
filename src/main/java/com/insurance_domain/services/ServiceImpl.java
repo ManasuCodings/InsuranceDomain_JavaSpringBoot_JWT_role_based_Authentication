@@ -55,6 +55,33 @@ public class ServiceImpl implements Service {
 
         return customerDto1;
     }
+    @Override
+    public CustomerDto registerAdmin(CustomerDto customerDto) {
+        Customer customer = new Customer();
+        customer.setCustName(customerDto.getCustName());
+        customer.setEmail(customerDto.getEmail());
+        customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
+        Role role = roleRepository.findById(AppConstants.ROLE_ADMINISTRATOR).get();
+        customer.getRoles().add(role);
+        Customer save = customerRepository.save(customer);
+        CustomerDto customerDto1 = mapToCustomerDto(save);
+        return customerDto1;
+    }
+
+    @Override
+    public CustomerDto registerAgent(CustomerDto customerDto) {
+
+        Customer customer = new Customer();
+        customer.setCustName(customerDto.getCustName());
+        customer.setEmail(customerDto.getEmail());
+        customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
+        Role role = roleRepository.findById(AppConstants.ROLE_AGENT).get();
+        customer.getRoles().add(role);
+        Customer save = customerRepository.save(customer);
+        CustomerDto customerDto1 = mapToCustomerDto(save);
+        return customerDto1;
+    }
+
 
     @Override
     public List<CustomerDto> getAllCustomer() {
@@ -360,6 +387,8 @@ public class ServiceImpl implements Service {
         List<PaymentDto> collect = paymentList.stream().map(x -> mapToPaymentDto(x)).collect(Collectors.toList());
         return collect;
     }
+
+
 
     private PaymentDto mapToPaymentDto(Payment x) {
         PaymentDto paymentDto = new PaymentDto();
